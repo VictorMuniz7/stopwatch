@@ -1,0 +1,32 @@
+<div class="back">
+    <header>
+        <div class="top-header">
+          <a href="https://github.com/VictorMuniz7" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <p>KRS</p>
+          <a href="https://www.linkedin.com/in/victor-muniz-236842267/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <hr>
+        <div class="title-div">
+          <h1>Stopwatch</h1>
+        </div>
+    </header>
+  <div class="container">
+    <div class="stopwatch-div">
+      <div class="stopwatch" >
+        <p>{{ currentTime }}</p>
+      </div>
+    </div>
+    <div class="options-div">
+      <button (click)="start()"><i class="fa-solid fa-play"></i></button>
+      <button (click)="pause()"><i class="fa-solid fa-pause"></i></button>
+      <button (click)="restart()"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+      <button (click)="lap()"><i class="fa-solid fa-flag"></i></button>
+      <button (click)="clearLaps()"><i class="fa-solid fa-broom"></i></button>
+    </div>
+    <div class="lap-div">
+      <ul>
+        <li *ngFor="let lap of laps">{{ lap }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
