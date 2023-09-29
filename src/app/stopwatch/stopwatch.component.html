@@ -11,17 +11,17 @@
         </div>
     </header>
   <div class="container">
-    <div class="stopwatch-div">
-      <div class="stopwatch" >
+    <div class="stopwatch-div" >
+      <div class="stopwatch" #stopw>
         <p>{{ currentTime }}</p>
       </div>
     </div>
     <div class="options-div">
-      <button (click)="start()"><i class="fa-solid fa-play"></i></button>
-      <button (click)="pause()"><i class="fa-solid fa-pause"></i></button>
-      <button (click)="restart()"><i class="fa-solid fa-arrow-rotate-left"></i></button>
-      <button (click)="lap()"><i class="fa-solid fa-flag"></i></button>
-      <button (click)="clearLaps()"><i class="fa-solid fa-broom"></i></button>
+      <button (click)="start()" (click)="buttonEffect(btn1)" #btn1><i class="fa-solid fa-play"></i></button>
+      <button (click)="pause()" (click)="buttonEffect(btn2)" #btn2><i class="fa-solid fa-pause"></i></button>
+      <button (click)="restart()" (click)="buttonEffect(btn3)" #btn3><i class="fa-solid fa-arrow-rotate-left"></i></button>
+      <button (click)="lap()" (click)="buttonEffect(btn4)" #btn4><i class="fa-solid fa-flag"></i></button>
+      <button (click)="clearLaps()" (click)="buttonEffect(btn5)" #btn5><i class="fa-solid fa-broom"></i></button>
     </div>
     <div class="lap-div">
       <ul>

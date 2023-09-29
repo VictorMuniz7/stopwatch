@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-stopwatch',
@@ -7,8 +7,11 @@ import { Component } from '@angular/core';
 })
 export class StopwatchComponent {
 
+  @ViewChild('stopw') stopwatch!: ElementRef;
+
   isRunning: boolean = false;
-  intervalId: any;
+  intervalMilliseconds: any;
+  intervalSeconds: any;
   timeMilliseconds: number = 0;
   currentTime: string = '00:00:00';
 
@@ -17,15 +20,24 @@ export class StopwatchComponent {
   start(){
     if(!this.isRunning){
       this.isRunning = true;
-      this.intervalId = setInterval(() => {
+      this.intervalMilliseconds = setInterval(() => {
         this.timeMilliseconds += 10;
         this.currentTime = this.convertMilliseconds(this.timeMilliseconds);
       }, 10)
+
+      this.intervalSeconds = setInterval(() => {
+        this.stopwatch.nativeElement.style.transform = 'scale(1.05)'
+
+        setTimeout(() => {
+          this.stopwatch.nativeElement.style.transform = 'scale(1)'
+        }, 500)
+      }, 1000)
     }
   }
 
   pause(){
-    clearInterval(this.intervalId);
+    clearInterval(this.intervalMilliseconds);
+    clearInterval(this.intervalSeconds);
     this.isRunning = false;
   }
 
@@ -36,6 +48,7 @@ export class StopwatchComponent {
   }
 
   lap(){
+    if(this.isRunning)
     this.laps.push(this.currentTime);
   }
 
@@ -49,5 +62,12 @@ export class StopwatchComponent {
     let milliseconds = (totalMilliseconds / 1000);
 
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(2, '0').replace('.', '').slice(-2)}`;
+  }
+
+  buttonEffect(btn: HTMLElement){
+    btn.classList.add('animation-btn')
+    setTimeout(() => {
+      btn.classList.remove('animation-btn')
+    }, 1000);
   }
 }

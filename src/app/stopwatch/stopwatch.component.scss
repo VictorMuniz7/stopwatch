@@ -67,6 +67,7 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: 1s;
 
   p{
     width: 4.15em;
@@ -97,8 +98,18 @@ header{
     outline: 0;
     cursor: pointer;
     color: #fff;
+
+    &:hover{
+      background-color: #bec9e6;
+    }
+
   }
 }
+
+.animation-btn{
+  animation: buttonAnimation 1.5s ease-in-out;
+}
+
 
 .lap-div{
   width: 100%;
@@ -146,7 +157,37 @@ header{
 
   .options-div{
     margin-top: 5em;
-  }
+
+      button{
+        &:hover{
+          background-color: transparent;
+          i{
+            display: none;
+          }
+        }
+
+        &:nth-child(1):hover::before{
+          content: 'Start';
+        }
+
+        &:nth-child(2):hover::before{
+          content: 'Stop';
+        }
+
+        &:nth-child(3):hover::before{
+          content: 'Restart';
+        }
+
+        &:nth-child(4):hover::before{
+          content: 'Lap';
+        }
+
+        &:nth-child(5):hover::before{
+          content: 'Clear';
+        }
+      }
+    }
+
 
   .lap-div{
 
@@ -181,3 +222,26 @@ header{
   }
 }
 
+@media screen and (min-width: 95em) {
+
+  .options-div{
+    width: 45%;
+
+    button{
+      width: 5em;
+    }
+  }
+
+}
+
+@keyframes buttonAnimation {
+
+  from{
+    background-color: #dee3f0;
+  }
+
+  to{
+    background-color: transparent;
+  }
+
+}
